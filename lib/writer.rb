@@ -11,8 +11,13 @@ class Writer
     make_directory
       filename = "queue/#{filename}.csv"
     File.open(filename, 'w') do |file|
+      file.puts header
       file.puts @final_data
     end
+  end
+
+  def header
+    "last_Name,first_Name,Email_Address,Zipcode,City,State,Street,HomePhone"
   end
 
   def make_directory

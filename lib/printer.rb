@@ -17,11 +17,15 @@ class Printer
   end
 
   def format_attendees(attendees)
-    attendees.collect {|a| format_attendee(a)}.join("\n")
+    attendees.collect {|attendee| format_attendee(attendee)}.join("\n")
   end
 
   def print_attendees(attendees)
     puts header
     puts format_attendees(attendees)
+  end
+
+  def print_attendees_by(attribute, attendees)
+    print_attendees(attendees.sort_by { |attendee| attendee.send(attribute) })
   end
 end

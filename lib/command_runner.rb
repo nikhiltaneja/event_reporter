@@ -50,7 +50,7 @@ class CommandRunner
       "Displays the items in the queue sorted by a specific attribute"
     when "queue save to <filename.csv>"
       "Exports the current queue to the specified filename as a CSV"
-    when "find <attirbute> <criteria>"
+    when "find <attribute> <criteria>"
       "Load the queue with all records matching the criteria for the given attribute"
     else
       "Sorry I don't understand that command. Please enter help to see a list of available commands."
@@ -70,7 +70,11 @@ class CommandRunner
   end
 
   def queue_print
-    printer.print_attendees(queue.data)
+    printer.print_attendees(queue_data)
+  end
+
+  def queue_print_by(attribute)
+    printer.print_attendees_by(attribute, queue_data)
   end
 
   def queue_save_to(filename)

@@ -8,7 +8,7 @@ class CommandInterpreter
   end
   
   def default_filename
-    "./data/event_attendees.csv"
+    "event_attendees.csv"
   end
 
   def run(command)
@@ -31,8 +31,9 @@ class CommandInterpreter
   end
 
   def run_load(parts)
-    filename = parts.first || default_filename
-    runner.load(filename)
+    filename = (parts.first) || default_filename
+    full_filename = "./data/#{filename}"
+    runner.load(full_filename)
   end
 
   def run_help(parts)
@@ -47,15 +48,18 @@ class CommandInterpreter
   end
 
   def run_queue(parts)
-    request = parts.first
+    request = parts[0..1].join(" ")
     case request
     when "print"
       runner.queue_print
+    when "print by"
+      attribute = parts.last
+      runner.queue_print_by(attribute)
     when "count"
       runner.queue_count
     when "clear"
       runner.queue_clear
-    when "save"
+    when "save to"
       filename = parts.last
       runner.queue_save_to(filename)
     end
