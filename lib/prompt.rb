@@ -6,7 +6,7 @@ class Prompt
     command_interpreter = CommandInterpreter.new
 
     input = nil
-    while input != "exit"
+    while input != "quit"
       printf "Please enter a command: "
       input = gets.chomp
       puts command_interpreter.run(input)

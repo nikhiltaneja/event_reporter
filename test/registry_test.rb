@@ -2,7 +2,6 @@ gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/registry'
-require 'pry'
 
 class RegistryTest < Minitest::Test
   attr_reader :registry
@@ -122,5 +121,4 @@ class RegistryTest < Minitest::Test
       assert_equal "00139", attendee.zipcode
     end
   end
-
 end

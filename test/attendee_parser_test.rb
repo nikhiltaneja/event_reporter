@@ -24,5 +24,4 @@ class AttendeeParserTest < Minitest::Test
     assert_equal "DC", attendee.state
     assert_equal "20010", attendee.zipcode
   end
-
 end

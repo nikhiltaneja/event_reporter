@@ -8,7 +8,11 @@ require './lib/command_interpreter'
       "running load with #{filename}"
     end
 
-    def queue_print(attribute)
+    def queue_print
+      "running queue print"
+    end
+
+    def queue_print_by(attribute)
       "running queue print ordered by #{attribute}"
     end
 
@@ -32,35 +36,35 @@ require './lib/command_interpreter'
       "running help command list for #{command}"
     end
 
-    def find_first_name(criteria)
+    def find_attendees_by_first_name(criteria)
       "running find by first_name for #{criteria}"
     end
 
-    def find_last_name(criteria)
+    def find_attendees_by_last_name(criteria)
       "running find by last_name for #{criteria}"
     end
 
-    def find_email(criteria)
+    def find_attendees_by_email(criteria)
       "running find by email for #{criteria}"
     end
 
-    def find_zipcode(criteria)
+    def find_attendees_by_zipcode(criteria)
       "running find by zipcode for #{criteria}"
     end
 
-    def find_city(criteria)
+    def find_attendees_by_city(criteria)
       "running find by city for #{criteria}"
     end
 
-    def find_state(criteria)
+    def find_attendees_by_state(criteria)
       "running find by state for #{criteria}"
     end
 
-    def find_street(criteria)
+    def find_attendees_by_street(criteria)
       "running find by street for #{criteria}"
     end
 
-    def find_home_phone(criteria)
+    def find_attendees_by_home_phone(criteria)
       "running find by home_phone for #{criteria}"
     end
 
@@ -77,7 +81,7 @@ class CommandInterpreterTest < Minitest::Test
     command = "load some_data.csv"
     result = ci.run(command)
 
-    assert_equal "running load with some_data.csv", result
+    assert_equal "running load with ./data/some_data.csv", result
   end
 
   def test_it_runs_load_without_a_filename
@@ -155,5 +159,4 @@ class CommandInterpreterTest < Minitest::Test
     result = ci.run("find home_phone 4257650025")
     assert_equal "running find by home_phone for 4257650025", result
   end
-
 end

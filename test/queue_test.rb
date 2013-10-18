@@ -25,5 +25,4 @@ class QueueTest < Minitest::Test
     queue.clear
     assert_equal 0, queue.count
   end
-
 end

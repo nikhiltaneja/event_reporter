@@ -1,4 +1,5 @@
 require './lib/command_runner.rb'
+require 'csv'
 
 class Writer
 
@@ -7,23 +8,22 @@ class Writer
   end
 
   def write_to(filename, queue_data)
-    format_output(queue_data)
-    make_directory
-      filename = "queue/#{filename}.csv"
-    File.open(filename, 'w') do |file|
-      file.puts header
-      file.puts @final_data
+    if filename.include?("csv")
+      filename = "data/#{filename}"
+    else
+      filename = "data/#{filename}.csv"
+    end
+    
+    CSV.open(filename, 'wb') do |csv|
+      csv << header.split(",")
+      format_output(queue_data).each do |row|
+        csv << row.split("  ")
+      end
     end
   end
 
   def header
     "last_Name,first_Name,Email_Address,Zipcode,City,State,Street,HomePhone"
-  end
-
-  def make_directory
-    if File.directory?("queue") == false
-      Dir.mkdir("queue")
-    end
   end
 
   def format_individual_attendee(attendee)
@@ -35,7 +35,6 @@ class Writer
   end
 
   def format_output(attendees)
-    @final_data = attendees.collect {|attendee| format_individual_attendee(attendee)}.join("\n")
+    attendees.collect {|attendee| format_individual_attendee(attendee)}
   end
-
 end

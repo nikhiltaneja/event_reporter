@@ -23,7 +23,7 @@ class CommandInterpreter
       run_queue(parts[1..-1])
     when "find"
       run_find(parts[1..-1])
-    when "exit"
+    when "quit"
       "See you later"
     else
       "Sorry I don't know how to #{instruction}"
